@@ -69,3 +69,41 @@ Client / API Consumer
         | Database    |
         | (H2 / RDS)  |
         +-------------+
+```
+##Sequence Diagram
+
+```
+
+Client
+  |
+  | POST /transactions
+  v
+Transaction Producer
+  |
+  | publish event
+  v
+Kafka (transactions topic)
+  |
+  | consume
+  v
+Transaction Processor
+  |
+  | apply rules
+  | generate alert
+  v
+Kafka (alerts topic)
+  |
+  | consume
+  v
+Alert Service
+  |
+  | store alert
+  v
+Database
+
+Client
+  |
+  | GET /alerts
+  v
+Alert Service
+```
