@@ -1,0 +1,6 @@
+# yaml
+spring:
+  application:
+    name: transaction-producer
+  kafka:
+    bootstrap-servers: localhost:9092
