@@ -70,7 +70,7 @@ Client / API Consumer
         | (H2 / RDS)  |
         +-------------+
 ```
-##Sequence Diagram
+## Sequence Diagram
 
 ```
 
@@ -106,4 +106,64 @@ Client
   | GET /alerts
   v
 Alert Service
+```
+
+
+⸻
+
+## 🧱 Services Breakdown
+```
+1️⃣ Transaction Producer
+	•	REST API to accept transactions
+	•	Validates payloads
+	•	Publishes events to Kafka
+
+Tech
+	•	Spring Boot
+	•	Spring Web
+	•	Validation
+	•	Kafka Producer
+
+⸻
+
+2️⃣ Transaction Processor
+	•	Consumes transactions
+	•	Applies stateful stream processing logic
+	•	Generates alerts for suspicious activity
+
+Tech
+	•	Spring Boot
+	•	Kafka Consumer / Streams
+	•	Strategy Pattern for fraud rules
+
+⸻
+
+3️⃣ Alert Service
+	•	Consumes alert events
+	•	Persists alerts
+	•	Exposes secure REST APIs
+
+Tech
+	•	Spring Boot
+	•	Spring Data JPA
+	•	H2 (local)
+	•	Spring Security
+```
+
+## 🧪 Testing Strategy
+```
+	•	Unit tests for business logic
+	•	Service-level tests for APIs
+	•	Integration tests using Kafka
+	•	Manual API testing via Postman
+```
+
+## ⚙️ Local Development Setup
+```
+Prerequisites
+	•	Java 17 or 21
+	•	Maven 3.9+
+	•	Docker & Docker Compose
+
+⸻
 ```
